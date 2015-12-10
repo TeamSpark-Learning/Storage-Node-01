@@ -87,4 +87,4 @@ function getAllMulti(currentPartitionId) {
 	});
 }
 
-getAllMulti('2015-11-25');
+getAllMulti(null);
