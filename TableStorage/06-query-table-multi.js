@@ -9,7 +9,11 @@ var timeFinish = null;
 var recordsSelected = 0;
 var queriesCountData = 0;
 var queriesCountPartition = 0;
-var partitionsCount = 0;
+var queryInfo = {
+	partitionsFound: 0,
+	partitionsSelected: 0,
+	isFoundAll: false
+};
 
 function getPartition(partitionId, continuationToken) {
 	queriesCountData++;
@@ -26,10 +30,10 @@ function getPartition(partitionId, continuationToken) {
 				var partitionKey = result.entries[0].PartitionKey._;
 				getPartition(partitionKey, result.continuationToken);
 			} else {
-				partitionsCount--;
+				queryInfo.partitionsSelected++;
 			}
 			
-			if (partitionsCount == 0) {
+			if (queryInfo.isFoundAll && queryInfo.partitionsFound == queryInfo.partitionsSelected) {
 				timeFinish = new Date();
 		
 				var diff = timeFinish.getTime() - timeStart.getTime();
@@ -61,7 +65,7 @@ function getNextPartition(currentPartitionId, callback) {
 			console.error(error.toString().red);
 		} else {
 			if (result.entries.length > 0) {
-				partitionsCount++;
+				queryInfo.partitionsFound++;
 				
 				var partitionKey = result.entries[0].PartitionKey._;
 				callback(partitionKey);
@@ -77,6 +81,8 @@ function getAllMulti(currentPartitionId) {
 		if (!!nextPartitionId) {
 			getPartition(nextPartitionId, null);
 			getAllMulti(nextPartitionId);
+		} else {
+			queryInfo.isFoundAll = true;
 		}
 	});
 }
