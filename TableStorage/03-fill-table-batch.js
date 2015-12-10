@@ -58,7 +58,9 @@ while(dateCurrent <= logsProperties.logsDates.end) {
 		}
 	}
 	
-	executeBatch(batch);
+	if (batch.size() > 0) {
+		executeBatch(batch);
+	}
 	
 	dateCurrent.setDate(dateCurrent.getDate() + 1);
 }
