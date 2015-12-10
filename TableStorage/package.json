@@ -1,0 +1,17 @@
+{
+  "name": "table-storage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "uuid": "^2.0.1",
+    "azure-storage": "^0.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Boyko Anton",
+  "license": "MIT"
+}
