@@ -114,7 +114,7 @@ function uploadBlock(blobName, blockId, lines) {
 	
 	azureBlobStorage.createBlockFromText(id, config.containerNameLog, name, lines.join('\n'), options, function(error, response) {
 		if (error) {
-			throw error;
+			console.error(JSON.stringify(error).red);
 			process.exit();
 		}
 		
@@ -124,7 +124,7 @@ function uploadBlock(blobName, blockId, lines) {
 		if (blobInfo.totalBlocks == 0) {
 			azureBlobStorage.commitBlocks(config.containerNameLog, name, blobInfo.blocks, options, function(error, response) {
 				if (error) {
-					throw error;
+					console.error(JSON.stringify(error).red);
 					process.exit();
 				}
 				
