@@ -13,7 +13,7 @@ var logsProperties = {
 	linesPerBlock: 100,
 	logsDates: {
 		start: new Date(2015, 0, 1),
-		end: new Date(2015, 11, 31)
+		end: new Date(2015, 0, 31)
 	},
 	logsPerDay: {
 		min: 5000,
@@ -113,7 +113,7 @@ function uploadBlock(blobName, blockId, lines) {
 	var id = blockId;
 	
 	azureBlobStorage.createBlockFromText(id, config.containerNameLog, name, lines.join('\n'), options, function(error, response) {
-		if (error) {
+		if (!!error) {
 			console.error(JSON.stringify(error).red);
 			process.exit();
 		}
@@ -123,7 +123,7 @@ function uploadBlock(blobName, blockId, lines) {
 		
 		if (blobInfo.totalBlocks == 0) {
 			azureBlobStorage.commitBlocks(config.containerNameLog, name, blobInfo.blocks, options, function(error, response) {
-				if (error) {
+				if (!!error) {
 					console.error(JSON.stringify(error).red);
 					process.exit();
 				}
