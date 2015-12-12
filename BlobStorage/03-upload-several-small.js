@@ -69,7 +69,7 @@ while(files.length > 0) {
 	var fileName = files.pop();
 	azureBlobStorage.createBlockBlobFromLocalFile(config.containerNameLog, fileName, fileName, options, function(error, result) {
 		if (error) {
-			throw error;
+			console.error(JSON.stringify(error).red);
 			process.exit();
 		}
 		
