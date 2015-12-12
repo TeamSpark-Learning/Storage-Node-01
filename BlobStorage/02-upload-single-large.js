@@ -11,7 +11,7 @@ var logsProperties = {
 	fileName: './log.txt',
 	logsDates: {
 		start: new Date(2015, 0, 1),
-		end: new Date(2015, 0, 20)
+		end: new Date(2015, 11, 31)
 	},
 	logsPerDay: {
 		min: 5000,
