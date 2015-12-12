@@ -16,8 +16,8 @@ var logsProperties = {
 		end: new Date(2015, 11, 31)
 	},
 	logsPerDay: {
-		min: 500,
-		max: 500
+		min: 5000,
+		max: 5000
 	},
 	logsCategories: ['critical', 'error', 'warning', 'info'],
 	getRandomInt: function(min, max) {
