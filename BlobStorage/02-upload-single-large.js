@@ -8,7 +8,7 @@ var azureStorage = require('azure-storage');
 var azureBlobStorage = azureStorage.createBlobService(config.accountName, config.accountKey);
 
 var logsProperties = {
-	fileName: './log.txt',
+	fileName: 'log.txt',
 	logsDates: {
 		start: new Date(2015, 0, 1),
 		end: new Date(2015, 11, 31)
@@ -55,7 +55,7 @@ var options = {
 	parallelOperationThreadCount: 1
 };
 
-var summary = azureBlobStorage.createBlockBlobFromLocalFile(config.containerNameLog, uuid.v1(), logsProperties.fileName, options, function(error, result) {
+var summary = azureBlobStorage.createBlockBlobFromLocalFile(config.containerNameLog, logsProperties.fileName, logsProperties.fileName, options, function(error, result) {
 	if (error) {
 		throw error;
 		process.exit();
