@@ -57,7 +57,7 @@ var options = {
 
 var summary = azureBlobStorage.createBlockBlobFromLocalFile(config.containerNameLog, logsProperties.fileName, logsProperties.fileName, options, function(error, result) {
 	if (error) {
-		throw error;
+		console.error(JSON.stringify(error).red);
 		process.exit();
 	}
 	
