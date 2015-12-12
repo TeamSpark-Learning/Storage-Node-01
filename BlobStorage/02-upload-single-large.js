@@ -56,17 +56,20 @@ var options = {
 };
 
 var summary = azureBlobStorage.createBlockBlobFromLocalFile(config.containerNameLog, uuid.v1(), logsProperties.fileName, options, function(error, result) {
-	if (!error) {
-		timeFinish = new Date();
-		
-		var diff = timeFinish.getTime() - timeStart.getTime();
-		var stat = fs.statSync(logsProperties.fileName);
-		var sizeInMBytes = stat.size / 1024 / 1024;
-		var avg = diff / sizeInMBytes;
-		
-		console.info('Mbytes uploaded:  ' + sizeInMBytes.toString().red);
-		console.info('total time in ms: ' + diff.toString().red);
-		console.info('avg ms per Mbyte: ' + avg.toString().red);
-		console.info('avg speed:        ' + summary.getAverageSpeed());
+	if (error) {
+		throw error;
+		process.exit();
 	}
+	
+	timeFinish = new Date();
+	
+	var diff = timeFinish.getTime() - timeStart.getTime();
+	var stat = fs.statSync(logsProperties.fileName);
+	var sizeInMBytes = stat.size / 1024 / 1024;
+	var avg = diff / sizeInMBytes;
+	
+	console.info('Mbytes uploaded:  ' + sizeInMBytes.toString().red);
+	console.info('total time in ms: ' + diff.toString().red);
+	console.info('avg ms per Mbyte: ' + avg.toString().red);
+	console.info('avg speed:        ' + summary.getAverageSpeed());
 });
