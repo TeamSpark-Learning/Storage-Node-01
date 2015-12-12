@@ -37,7 +37,7 @@ while(dateCurrent <= logsProperties.logsDates.end) {
 	var date = dateCurrent.getFullYear() + '-' + dateCurrent.getMonth() + '-' + dateCurrent.getDate();
 	var fileName = logsProperties.fileNamePattern.replace('{0}', date);
 	files.push(fileName);
-	stats.push(fs.statSync(logsProperties.fileName));
+	stats.push(fs.statSync(fileName));
 	
 	fs.unlink(fileName);
 	
