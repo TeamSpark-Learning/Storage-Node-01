@@ -54,7 +54,7 @@ while(dateCurrent <= logsProperties.logsDates.end) {
 		fs.appendFileSync(fileName, logString);
 	}
 	
-	stats.push(fs.statSync(logsProperties.fileName));
+	stats.push(fs.statSync(fileName));
 	
 	dateCurrent.setDate(dateCurrent.getDate() + 1);
 }
